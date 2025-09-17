@@ -1,16 +1,112 @@
 ---
-
+import '../styles/global.css';
+import Features from '../components/Features.astro';
+import Plans from '../components/Plans.astro';
+import BackToTop from '../components/BackToTop.astro';
+import ImageModal from '../components/ImageModal.astro'; // New import
 ---
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cafecitos System - Gestión para Cafeterías</title>
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <style>
+        /* A simple style block for custom fonts or minor adjustments if needed */
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+    </style>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&family=Lobster:wght@400&display=swap" rel="stylesheet">
+</head>
+<body class="bg-[#F5F0E6] text-stone-800">
 
-<html lang="en">
-	<head>
-		<meta charset="utf-8" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<meta name="viewport" content="width=device-width" />
-		<meta name="generator" content={Astro.generator} />
-		<title>Astro</title>
-	</head>
-	<body>
-		<h1>Astro</h1>
-	</body>
+    <!-- Header -->
+    <header class="container mx-auto px-6 py-4 flex justify-between items-center relative">
+        <h1 class="text-2xl font-bold text-stone-900" style="font-family: 'Lobster', cursive;">Cafecitos System</h1>
+        
+        <!-- Hamburger menu button for mobile -->
+        <button id="mobile-menu-button" class="md:hidden p-2 rounded-md text-stone-800 hover:bg-stone-200 focus:outline-none focus:ring-2 focus:ring-stone-500">
+            <svg class="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+            </svg>
+        </button>
+
+        <!-- Desktop Navigation -->
+        <nav class="hidden md:flex space-x-8">
+            <a href="#features" class="hover:text-amber-800">Características</a>
+            <a href="#plans" class="hover:text-amber-800">Planes</a>
+            <a href="#contact-section" class="hover:text-amber-800">Contacto</a>
+        </nav>
+
+        <!-- Mobile Navigation (hidden by default) -->
+        <nav id="mobile-menu" class="hidden absolute top-full left-0 w-full bg-white shadow-lg md:hidden flex-col items-center py-4 space-y-4">
+            <a href="#features" class="block hover:text-amber-800" onclick="document.getElementById('mobile-menu').classList.add('hidden');">Características</a>
+            <a href="#plans" class="block hover:text-amber-800" onclick="document.getElementById('mobile-menu').classList.add('hidden');">Planes</a>
+            <a href="#contact-section" class="block hover:text-amber-800" onclick="document.getElementById('mobile-menu').classList.add('hidden');">Contacto</a>
+        </nav>
+    </header>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const mobileMenuButton = document.getElementById('mobile-menu-button');
+            const mobileMenu = document.getElementById('mobile-menu');
+
+            if (mobileMenuButton && mobileMenu) {
+                mobileMenuButton.addEventListener('click', () => {
+                    mobileMenu.classList.toggle('hidden');
+                    mobileMenu.classList.toggle('flex');
+                });
+            }
+        });
+    </script>
+
+    <!-- Hero Section -->
+    <main class="min-h-screen flex flex-col justify-center items-center text-center px-6">
+        <h2 class="text-4xl md:text-6xl font-bold leading-tight mb-4">
+            El Administrador de Órdenes Definitivo<br /> <span class="text-amber-800">para tu Negocio</span>
+        </h2>
+        <p class="text-lg md:text-xl text-stone-700 max-w-3xl mx-auto mb-8">
+            Optimiza el flujo de tu cafetería o restaurante, desde la cocina hasta la cuenta. Control total, sin complicaciones.
+        </p>
+        <div class="space-x-4">
+            <a href="#" class="bg-amber-800 text-white font-bold py-3 px-8 rounded-full hover:bg-amber-900 transition-colors">
+                Solicitar Demo
+            </a>
+            <a href="#plans" class="bg-transparent border-2 border-amber-800 text-amber-800 font-bold py-3 px-8 rounded-full hover:bg-amber-800 hover:text-white transition-colors">
+                Ver Planes
+            </a>
+        </div>
+    </main>
+
+    <Features />
+
+    <Plans />
+
+    <!-- Contact Section -->
+    <section id="contact-section" class="py-20 bg-stone-100">
+        <div class="container mx-auto px-6 text-center">
+            <h3 class="text-3xl font-bold mb-6">Contáctanos</h3>
+            <p class="text-lg text-stone-700 mb-8">¿Tienes preguntas o quieres una demostración? ¡Estamos aquí para ayudarte!</p>
+            <div class="flex flex-col items-center space-y-4 md:flex-row md:space-y-0 md:space-x-4 justify-center">
+                <a href="mailto:devcitobo@outlook.com" class="bg-amber-800 text-white font-bold py-3 px-8 rounded-full hover:bg-amber-900 transition-colors text-lg">Contáctanos por Email</a>
+                <a href="https://devcito.org" target="_blank" rel="noopener noreferrer" class="bg-stone-700 text-white font-bold py-3 px-8 rounded-full hover:bg-stone-800 transition-colors text-lg">Visita devcito.org</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer id="contact" class="bg-white mt-10">
+        <div class="container mx-auto px-6 py-8 text-center text-stone-600">
+            <p>&copy; 2025 Cafecitos System. Todos los derechos reservados.</p>
+            <p class="mt-2">Creado con ❤️ para los amantes del café.</p>
+        </div>
+    </footer>
+
+    <BackToTop />
+    <ImageModal /> // New component tag
+
+</body>
 </html>

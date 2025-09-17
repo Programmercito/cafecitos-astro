@@ -1,0 +1,17 @@
+---
+// src/components/FeatureCard.astro
+export interface Props {
+  title: string;
+  description: string;
+  imageUrl: string;
+}
+
+const { title, description, imageUrl } = Astro.props;
+---
+
+<div class="text-center p-6 border border-stone-200 rounded-xl shadow-lg hover:shadow-xl hover:scale-105 transition-all duration-300 ease-in-out">
+    <img src={imageUrl} alt={title} class="mx-auto mb-4 rounded-lg shadow-lg h-48 w-auto object-cover border-4 border-stone-200 cursor-pointer"
+         onclick="document.dispatchEvent(new CustomEvent('open-image-modal', { detail: { imageUrl: this.src, imageAlt: this.alt } }))">
+    <h4 class="text-xl font-bold mb-2">{title}</h4>
+    <p class="text-stone-600">{description}</p>
+</div>

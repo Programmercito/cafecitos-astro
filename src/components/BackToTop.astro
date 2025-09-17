@@ -1,0 +1,30 @@
+---
+// src/components/BackToTop.astro
+---
+
+<button id="back-to-top-btn" class="hidden fixed bottom-5 right-5 bg-amber-800 text-white rounded-full p-3 shadow-lg hover:bg-amber-900 focus:outline-none focus:ring-2 focus:ring-amber-700 focus:ring-opacity-50 transition-opacity duration-300">
+    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 15l7-7 7 7" />
+    </svg>
+</button>
+
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+        const backToTopButton = document.getElementById('back-to-top-btn');
+
+        if (backToTopButton) {
+            window.onscroll = function() {
+                // Show button if user scrolls down more than 300px
+                if (document.body.scrollTop > 300 || document.documentElement.scrollTop > 300) {
+                    backToTopButton.classList.remove('hidden');
+                } else {
+                    backToTopButton.classList.add('hidden');
+                }
+            };
+
+            backToTopButton.onclick = function() {
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            };
+        }
+    });
+</script>

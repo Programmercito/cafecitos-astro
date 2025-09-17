@@ -1,0 +1,57 @@
+---
+// src/components/Features.astro
+import FeatureCard from './FeatureCard.astro';
+
+const featuresData = [
+  {
+    title: "Registro de Productos",
+    description: "Gestiona de forma intuitiva todo tu catálogo de productos. Asigna nombres, precios, categorías e imágenes para una visualización clara y una administración eficiente.",
+    imageUrl: "/images/tres.png"
+  },
+  {
+    title: "Gestión de Órdenes",
+    description: "Registra, modifica y sigue cada orden en tiempo real. Identifica el tipo de producto, añade o elimina ítems fácilmente y calcula el total al instante, mejorando la experiencia del cliente y la eficiencia del servicio.",
+    imageUrl: "/images/cuatro.png"
+  },
+  {
+    title: "Máquina de Estados",
+    description: "Controla el ciclo de vida de cada orden con estados claros: Abierta, Cerrada, Pagada, En Comisión o Procesada. Esto te permite una administración precisa y un seguimiento detallado del flujo de trabajo en tu negocio.",
+    imageUrl: "/images/ocho.png"
+  },
+  {
+    title: "Configuración Flexible",
+    description: "Adapta el sistema a las particularidades de tu negocio. Define diferentes esquemas de pago de comisiones y personaliza cómo se administran los cobros y las comisiones con tu equipo de meseros.",
+    imageUrl: "/images/diez.png"
+  },
+  {
+    title: "Reportes de Ganancias",
+    description: "Accede a informes detallados de tus ganancias y las comisiones generadas por tu personal. Visualiza los datos en pantalla o expórtalos a PDF para un análisis completo y una toma de decisiones informada.",
+    imageUrl: "/images/doce.png"
+  },
+  {
+    title: "Roles de Usuario",
+    description: "Garantiza la seguridad y el control con tres roles de usuario predefinidos: Administrador, Encargado y Mesero. Cada rol tiene permisos específicos para optimizar las operaciones y proteger la información sensible.",
+    imageUrl: "/images/uno.png"
+  },
+  {
+    title: "Cálculo de Comisiones",
+    description: "Automatiza el cálculo de comisiones para tu equipo, eliminando errores manuales y ahorrando tiempo valioso. Incentiva el rendimiento de tu personal con un sistema justo y transparente.",
+    imageUrl: "/images/doce.png"
+  }
+];
+---
+
+<section id="features" class="py-20 bg-white">
+    <div class="container mx-auto px-6">
+        <h3 class="text-3xl font-bold text-center mb-12">Una herramienta con todo lo que necesitas</h3>
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-12">
+            {featuresData.map(feature => (
+                <FeatureCard 
+                    title={feature.title}
+                    description={feature.description}
+                    imageUrl={feature.imageUrl}
+                />
+            ))}
+        </div>
+    </div>
+</section>

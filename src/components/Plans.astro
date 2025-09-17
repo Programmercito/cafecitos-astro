@@ -1,0 +1,65 @@
+---
+// src/components/Plans.astro
+import PlanCard from './PlanCard.astro';
+
+const plansData = [
+  {
+    title: "Plan Mensual Nube",
+    description: "Tu sistema en la nube, con acceso seguro y todas las ventajas de un servicio gestionado.",
+    price: "Bs. 300",
+    pricePeriod: "/mes",
+    features: [
+      "Hosteado en la nube",
+      "Bloqueo de acceso (solo desde el café)",
+      "Soporte de errores",
+      "Nuevas características (según objetivo inicial)",
+      "Backups diarios"
+    ],
+    isPrimary: true // Highlight this plan
+  },
+  {
+    title: "Plan Único Pago Local",
+    description: "Instalación permanente en tus equipos, con soporte inicial para una transición sin problemas.",
+    price: "Bs. 2000",
+    pricePeriod: "/pago único",
+    features: [
+      "Instalación en situ",
+      "Requiere mínimo 2 computadoras normales",
+      "3 meses de soporte de errores",
+      "Backups durante el periodo de soporte",
+      "Manuales de mantenimiento y backups"
+    ],
+    isPrimary: false
+  },
+  {
+    title: "Plan Mantenimiento Local",
+    description: "Soporte continuo para tu instalación local, asegurando el correcto funcionamiento y la seguridad de tus datos.",
+    price: "Bs. 100",
+    pricePeriod: "/mes",
+    features: [
+      "Soporte de bugs",
+      "Backups",
+      "Solo para instalaciones en situ"
+    ],
+    isPrimary: false
+  }
+];
+---
+
+<section id="plans" class="py-20">
+    <div class="container mx-auto px-6">
+        <h3 class="text-3xl font-bold text-center mb-12">Elige el plan que mejor se ajuste a tu café</h3>
+        <div class="flex flex-wrap justify-center gap-8">
+            {plansData.map(plan => (
+                <PlanCard
+                    title={plan.title}
+                    description={plan.description}
+                    price={plan.price}
+                    pricePeriod={plan.pricePeriod}
+                    features={plan.features}
+                    isPrimary={plan.isPrimary}
+                />
+            ))}
+        </div>
+    </div>
+</section>

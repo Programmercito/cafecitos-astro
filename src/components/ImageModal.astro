@@ -1,0 +1,67 @@
+---
+// src/components/ImageModal.astro
+---
+
+<div id="image-modal" class="hidden fixed inset-0 bg-black bg-opacity-75 flex justify-center items-center z-50 p-4">
+    <div class="relative bg-white rounded-lg shadow-xl max-w-[90vw] max-h-[90vh] overflow-hidden">
+        <button id="close-modal-btn" class="absolute top-3 right-3 text-white bg-gray-800 rounded-full p-1 hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-gray-600">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+            </svg>
+        </button>
+        <img id="modal-image" src="" alt="" class="max-w-full max-h-full object-contain rounded-lg">
+        <p id="modal-caption" class="text-center text-sm text-gray-700 p-2"></p>
+    </div>
+</div>
+
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+        const modal = document.getElementById('image-modal');
+        const modalImage = document.getElementById('modal-image') as HTMLImageElement;
+        const modalCaption = document.getElementById('modal-caption') as HTMLParagraphElement;
+        const closeModalBtn = document.getElementById('close-modal-btn');
+
+        if (!modal || !modalImage || !modalCaption || !closeModalBtn) {
+            console.error('ImageModal elements not found.');
+            return;
+        }
+
+        const openModal = (imageUrl: string, imageAlt: string) => {
+            modalImage.src = imageUrl;
+            modalImage.alt = imageAlt;
+            modalCaption.textContent = imageAlt;
+            modal.classList.remove('hidden');
+            document.body.style.overflow = 'hidden'; // Prevent scrolling background
+        };
+
+        const closeModal = () => {
+            modal.classList.add('hidden');
+            document.body.style.overflow = ''; // Restore scrolling
+            modalImage.src = ''; // Clear image
+            modalCaption.textContent = ''; // Clear caption
+        };
+
+        // Listen for custom event to open modal
+        document.addEventListener('open-image-modal', (event: Event) => {
+            const customEvent = event as CustomEvent<{ imageUrl: string; imageAlt: string }>;
+            openModal(customEvent.detail.imageUrl, customEvent.detail.imageAlt);
+        });
+
+        // Close modal on button click
+        closeModalBtn.addEventListener('click', closeModal);
+
+        // Close modal on overlay click
+        modal.addEventListener('click', (event) => {
+            if (event.target === modal) {
+                closeModal();
+            }
+        });
+
+        // Close modal on Escape key press
+        document.addEventListener('keydown', (event) => {
+            if (event.key === 'Escape' && !modal.classList.contains('hidden')) {
+                closeModal();
+            }
+        });
+    });
+</script>
