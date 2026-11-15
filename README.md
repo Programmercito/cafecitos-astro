@@ -1,43 +1,24 @@
-# Astro Starter Kit: Minimal
+# Cafecitos System
+
+Página de presentación de Cafecitos System, una herramienta de gestión para cafeterías y restaurantes.
+
+## Desarrollo
+
+Requiere Node.js 22.23.4 o superior y pnpm 11.
 
 ```sh
-npm create astro@latest -- --template minimal
+pnpm install
+pnpm dev
 ```
 
-> 🧑‍🚀 **Seasoned astronaut?** Delete this file. Have fun!
+La página de desarrollo está disponible en `http://localhost:4321`.
 
-## 🚀 Project Structure
+| Comando | Acción |
+| --- | --- |
+| `pnpm build` | Genera el sitio de producción en `dist/`. |
+| `pnpm preview` | Previsualiza el sitio generado. |
+| `pnpm astro --help` | Muestra las opciones de Astro. |
 
-Inside of your Astro project, you'll see the following folders and files:
+## Publicación
 
-```text
-/
-├── public/
-├── src/
-│   └── pages/
-│       └── index.astro
-└── package.json
-```
-
-Astro looks for `.astro` or `.md` files in the `src/pages/` directory. Each page is exposed as a route based on its file name.
-
-There's nothing special about `src/components/`, but that's where we like to put any Astro/React/Vue/Svelte/Preact components.
-
-Any static assets, like images, can be placed in the `public/` directory.
-
-## 🧞 Commands
-
-All commands are run from the root of the project, from a terminal:
-
-| Command                   | Action                                           |
-| :------------------------ | :----------------------------------------------- |
-| `npm install`             | Installs dependencies                            |
-| `npm run dev`             | Starts local dev server at `localhost:4321`      |
-| `npm run build`           | Build your production site to `./dist/`          |
-| `npm run preview`         | Preview your build locally, before deploying     |
-| `npm run astro ...`       | Run CLI commands like `astro add`, `astro check` |
-| `npm run astro -- --help` | Get help using the Astro CLI                     |
-
-## 👀 Want to learn more?
-
-Feel free to check [our documentation](https://docs.astro.build) or jump into our [Discord server](https://astro.build/chat).
+El sitio publicado se mantiene en `docs/`. Después de compilar, actualiza esa carpeta con el contenido de `dist/` y conserva `docs/CNAME` y `docs/.nojekyll`.

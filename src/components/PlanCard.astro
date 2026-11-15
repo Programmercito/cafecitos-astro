@@ -11,32 +11,17 @@ export interface Props {
 
 const { title, description, price, pricePeriod, features, isPrimary = false } = Astro.props;
 
-const primaryClasses = {
-    border: 'border-amber-800',
-    button: 'bg-amber-800 hover:bg-amber-900 text-white',
-};
-
-const secondaryClasses = {
-    border: 'border-stone-500',
-    button: 'bg-stone-700 hover:bg-stone-800 text-white',
-};
-
-const styles = isPrimary ? primaryClasses : secondaryClasses;
 ---
 
-<div class={`bg-white rounded-lg shadow-xl p-8 w-full max-w-md border-t-4 ${styles.border}`}>
-    <h4 class="text-2xl font-bold mb-2">{title}</h4>
-    <p class="text-stone-600 mb-6">{description}</p>
-    <p class="text-4xl font-bold mb-6">{price} <span class="text-lg font-normal">{pricePeriod}</span></p>
-    <ul class="text-left space-y-2 mb-8">
+<article class:list={['plan-card', { 'plan-primary': isPrimary }]}>
+    <div class="plan-label">{isPrimary ? 'EN LA NUBE ✳' : 'INSTALACIÓN LOCAL ↗'}</div>
+    <h3>{title}</h3>
+    <p class="plan-description">{description}</p>
+    <p class="plan-price">{price} <span>{pricePeriod}</span></p>
+    <ul>
         {features.map(feature => (
-            <li class="flex items-center">
-                <svg class="w-5 h-5 text-green-500 mr-2 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
-                <span>{feature}</span>
-            </li>
+            <li><span aria-hidden="true">✳</span> {feature}</li>
         ))}
     </ul>
-    <a href="#contact-section" class={`w-full text-center font-bold py-3 px-8 rounded-full transition-colors block ${styles.button}`}>
-        Saber Más
-    </a>
-</div>
+    <a href="#contact-section" class="plan-link">Conocer más <span aria-hidden="true">↗</span></a>
+</article>

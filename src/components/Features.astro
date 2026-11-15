@@ -41,17 +41,19 @@ const featuresData = [
 ];
 ---
 
-<section id="features" class="py-20 bg-white">
-    <div class="container mx-auto px-6">
-        <h3 class="text-3xl font-bold text-center mb-12">Una herramienta con todo lo que necesitas</h3>
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-12">
-            {featuresData.map(feature => (
-                <FeatureCard 
+<section id="features" class="features-section shell">
+    <div class="section-heading">
+        <div><p class="section-kicker">01 / HECHO PARA FLUIR</p><h2>Todo en su lugar.<br /><em>Como debe ser.</em></h2></div>
+        <p>De la primera orden al último reporte: las herramientas que necesitas para enfocarte en lo que más importa.</p>
+    </div>
+    <div class="features-grid">
+            {featuresData.map((feature, index) => (
+                <FeatureCard
                     title={feature.title}
                     description={feature.description}
                     imageUrl={feature.imageUrl}
+                    number={String(index + 1).padStart(2, '0')}
                 />
             ))}
-        </div>
     </div>
 </section>
